@@ -63,6 +63,7 @@ module.exports = {
     ],
     'react/prop-types': 'off',
     'max-len': ['error', 100],
+    'no-var': 'error',
   },
 
   overrides: [

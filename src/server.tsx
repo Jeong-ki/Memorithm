@@ -3,6 +3,7 @@ import path from 'path';
 import React from 'react';
 import { StaticRouter } from 'react-router-dom';
 import { ChunkExtractor } from '@loadable/server';
+import { ServerStyleSheet } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
@@ -47,6 +48,7 @@ app.get('*', (req, res) => {
   const nodeExtractor = new ChunkExtractor({ statsFile: nodeStats });
   const { default: App } = nodeExtractor.requireEntrypoint();
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
+  const sheet = new ServerStyleSheet();
 
   const store = createStore(reducers);
   const context = {};
@@ -59,8 +61,9 @@ app.get('*', (req, res) => {
     </Provider>,
   );
 
-  const html = renderToString(jsx);
+  const html = renderToString(sheet.collectStyles(jsx));
   const helmet = Helmet.renderStatic();
+  const styles = sheet.getStyleTags();
 
   res.set('content-type', 'text/html');
   res.send(`
@@ -71,7 +74,7 @@ app.get('*', (req, res) => {
           <meta name="google" content="notranslate">
           ${helmet.title.toString()}
           ${webExtractor.getLinkTags()}
-          ${webExtractor.getStyleTags()}
+          ${webExtractor.getStyleTags() + styles}
         </head>
         <body>
           <div id="root">${html}</div>
