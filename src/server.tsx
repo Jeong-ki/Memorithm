@@ -6,10 +6,10 @@ import { ChunkExtractor } from '@loadable/server';
 import { ServerStyleSheet } from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+// import { createStore } from 'redux';
 import { renderToString } from 'react-dom/server';
 
-import reducers from './store/reducers';
+import store from './store';
 
 const app = express();
 
@@ -50,7 +50,7 @@ app.get('*', (req, res) => {
   const webExtractor = new ChunkExtractor({ statsFile: webStats });
   const sheet = new ServerStyleSheet();
 
-  const store = createStore(reducers);
+  // const store = createStore(reducers);
   const context = {};
 
   const jsx = webExtractor.collectChunks(

@@ -58,7 +58,7 @@ const getConfig = (target) => ({
     alias: {
       pages: path.resolve('src/pages/'),
       components: path.resolve('src/components/'),
-      actions: path.resolve('src/store/actions/'),
+      sagas: path.resolve('src/store/sagas/'),
       reducers: path.resolve('src/store/reducers/'),
       util: path.resolve('src/util/'),
     },

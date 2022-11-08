@@ -1,7 +1,13 @@
-import { createStore, Store } from 'redux';
-import rootReducer, { RootState } from './reducers';
+import { applyMiddleware, createStore } from 'redux';
+import createSagaMiddleware from 'redux-saga';
 
-const configureStore = (preloadedState?: RootState): Store =>
-  createStore(rootReducer, preloadedState);
+import modules from './modules';
 
-export default configureStore;
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(modules.rootReducer, applyMiddleware(sagaMiddleware));
+
+export default store;
+
+sagaMiddleware.run(modules.rootSagas);
+
+export type RootState = ReturnType<typeof modules.rootReducer>;

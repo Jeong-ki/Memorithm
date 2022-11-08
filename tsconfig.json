@@ -46,7 +46,7 @@
       "@components/*": ["src/components/*"],
       "@pages/*": ["src/components/pages/*"],
       "@store": ["src/store/index"],
-      "@actions/*": ["src/store/actions/*"],
+      "@sagas/*": ["src/store/sagas/*"],
       "@reducers/*": ["src/store/reducers/*"],
       "@util/*": ["src/util/*"],
       "@styles/*": ["src/styles/*"]

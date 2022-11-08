@@ -71,6 +71,9 @@ module.exports = {
       files: ['*.ts', '*.tsx'],
       rules: {
         '@typescript-eslint/no-unused-vars': [2, { args: 'none' }],
+        'react/jsx-props-no-spreading': 0,
+        'react/no-array-index-key': 0,
+        'no-plusplus': 0,
       },
     },
   ],

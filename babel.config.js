@@ -36,7 +36,7 @@ module.exports = (api) => {
             '@pages': './src/components/pages',
             '@store': './src/store',
             '@reducers': './src/store/reducers',
-            '@actions': './src/store/actions',
+            '@sagas': './src/store/sagas',
             '@util': './src/util',
             '@styles': './src/styles',
           },
