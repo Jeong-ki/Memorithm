@@ -2,7 +2,6 @@ import { combineReducers } from 'redux';
 import { ForkEffect } from 'redux-saga/effects';
 
 // eslint-disable-next-line import/extensions
-import employee from './employee';
 import activity from './activity';
 
 const combineSagas = (param: { [key: string]: ForkEffect<never>[] }) =>
@@ -16,6 +15,6 @@ const combineSagas = (param: { [key: string]: ForkEffect<never>[] }) =>
   };
 
 export default {
-  rootReducer: combineReducers({ employee: employee.reducer, activity: activity.reducer }),
-  rootSagas: combineSagas({ activity: activity.saga, employee: employee.saga }),
+  rootReducer: combineReducers({ activity: activity.reducer }),
+  rootSagas: combineSagas({ activity: activity.saga }),
 };

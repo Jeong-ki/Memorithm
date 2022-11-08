@@ -1,24 +1,8 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
+import { takeEvery } from 'redux-saga/effects';
+import API from '../../../apis/modules/activity';
+import { createAsyncSaga } from '../../lib';
+import { fetch } from './reducer';
 
-import { fetchActivities } from '../../../apis/modules/activity';
-import { FETCH_ACTIVITIES } from './reducer';
+const asyncFetchSaga = createAsyncSaga(fetch, API.fetchActivities);
 
-export interface ResponseGenerator {
-  config?: any;
-  data?: any;
-  headers?: any;
-  request?: any;
-  status?: number;
-  statusText?: string;
-}
-
-function* fetch() {
-  try {
-    const activities: ResponseGenerator = yield call(fetchActivities);
-    yield put({ type: FETCH_ACTIVITIES.SUCCESS, payload: { activities } });
-  } catch (e: any) {
-    yield put({ type: FETCH_ACTIVITIES.FAILURE, payload: { message: e.message } });
-  }
-}
-
-export default [takeEvery(FETCH_ACTIVITIES.REQUEST, fetch)];
+export default [takeEvery(fetch.request, asyncFetchSaga)];

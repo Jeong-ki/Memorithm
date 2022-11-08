@@ -74,6 +74,7 @@ module.exports = {
         'react/jsx-props-no-spreading': 0,
         'react/no-array-index-key': 0,
         'no-plusplus': 0,
+        'no-use-before-define': 'off',
       },
     },
   ],
