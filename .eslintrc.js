@@ -75,6 +75,7 @@ module.exports = {
         'react/no-array-index-key': 0,
         'no-plusplus': 0,
         'no-use-before-define': 'off',
+        'func-names': 'off',
       },
     },
   ],
